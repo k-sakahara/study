@@ -1,0 +1,19 @@
+<<<<<<< HEAD
+﻿developでの変更
+=======
+﻿test file
+Add this line by Sakahara
+この行は坂原が追加しました
+ドイです
+resetのテスト１
+resetのテスト２
+﻿こんにちは
+﻿テストテストテスト
+test file
+Add this line by Sakahara
+この行は坂原が追加
+ドイです
+ここにも追加しました by Sakahara
+テスト
+soucetree test
+>>>>>>> fe0568c6da1c21ac918d7e72dec5d30009fb9c60
