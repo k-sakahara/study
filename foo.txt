@@ -14,3 +14,5 @@ Add this line by Sakahara
 ここにも追加しました by Sakahara
 テスト
 
+
+resetの練習
