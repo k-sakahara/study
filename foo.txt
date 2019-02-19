@@ -1,1 +1,16 @@
-﻿developでの変更
+
+﻿test file
+Add this line by Sakahara
+この行は坂原が追加しました
+ドイです
+resetのテスト１
+resetのテスト２
+﻿こんにちは
+﻿テストテストテスト
+test file
+Add this line by Sakahara
+この行は坂原が追加
+ドイです
+ここにも追加しました by Sakahara
+テスト
+
