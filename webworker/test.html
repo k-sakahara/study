@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta charset="utf-8">
+<title></title>
+<meta name="description" content="">
+<meta name="author" content="">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="">
+<style>
+  table{
+    border: medium solid #000;
+  }
+  table th,table td{
+    border: solid 1px #e0e0e0;
+  }
+  p{
+    margin:0;
+    padding:0;
+    font-size:6px;
+  }
+</style>
+<!--[if lt IE 9]>
+<script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.2/html5shiv.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
+<link rel="shortcut icon" href="">
+</head>
+<body>
+
+STATUS:<span id="statusspan" style="color:blue;">standby</span><br>
+<input type="number" id="amo" value="0" /><button id="btn">calc</button>
+<div id="result"></div>
+
+<!-- SCRIPTS -->
+<script type="text/javascript">
+  btn.addEventListener("click",function(){
+    btn.disabled = true;
+    result.textContent = "";
+
+    var worker = new Worker("worker.js");
+
+    worker.postMessage(amo.value);
+
+    statusspan.innerText = "calculating";
+    statusspan.style.color = "red"
+
+    worker.addEventListener("message",function(e){
+      for (var i = 0; i < e.data.length; i++) {
+        var elm = document.createElement("p");
+        elm.textContent = e.data[i];
+        result.appendChild(elm);
+      }
+      statusspan.innerText="standby";
+      statusspan.style.color = "blue";
+      btn.disabled = false;
+      console.log(e);
+    });
+
+  });
+</script>
+<!-- <script src="main.js"></script> -->
+
+</body>
+</html>
