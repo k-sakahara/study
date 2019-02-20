@@ -1,5 +1,5 @@
 
-コンフリクトの練習　マスター
+コンフリクトの練習
 
-practice of conflict develop
 
+test by atom
