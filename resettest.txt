@@ -1,0 +1,3 @@
+resettestfile
+resettestfile line2
+resettestfile line3
