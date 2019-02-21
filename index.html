@@ -6,13 +6,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.css">
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.0/jquery.min.js"></script>
   <style>
-    header{
-      position: fixed;
-      height:4px;
-      width: 100%;
-      top:0;
-      background-color: #3c7170;
-    }
+
     .result{
       height:1em;
       margin: 1em 0;
@@ -149,13 +143,32 @@
     .grad-trigger:checked ~ .grad-item::before {
       display: none; /*チェックされていたら、grad-itemのbeforeを非表示にする*/
     }
+    .header-sample {
+      position: fixed;
+    }
+    ul {
+      list-style: none;
+    }
+    li {
+      float: left;
+    }
+    h1 {
+      float: left;
+    }
+
   </style>
 </head>
 
 
 <body class="backcolor">
 
-  <header>
+  <header　id="header-sample">
+    <h1>Demo</h1>
+    <ul>
+      <li>　ホーム　</li>
+      <li>　メニュー1　</li>
+      <li>　メニュー２</li>
+    </ul>
   </header>
 
   <!-- トップに戻るボタン -->
