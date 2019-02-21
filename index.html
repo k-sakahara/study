@@ -306,7 +306,7 @@
   <div id="page-top" class="blogicon-chevron-up">上へ</div>
 
   <div class="content">
-    <!-- <img src="ダウンロード.jpg" alt="犬の写真"> -->
+    <img src="ダウンロード.jpg" alt="犬の写真">
 
     <div class="ctl">
       <div id="input-text" class="box">
@@ -558,7 +558,8 @@
         console.user("素数を計算中です。素数は別スレッドで計算されます。結果が出力されるまでお待ち下さい。");
 
         worker.addEventListener("message",function(e){
-          console.user("素数計算が完了しました。出力を開始します。")
+          let resultamo = e.data.length;
+          console.user(`素数計算が完了しました。出力を開始します。${resultamo}個`)
           let result_p = document.createElement("p");
           result_p.classList.add("result");
           for (var i = 0; i < e.data.length; i++) {
@@ -568,7 +569,7 @@
             result_p.appendChild(new_result);
           }
           result.appendChild(result_p);
-          console.user("素数出力 完了しました。")
+          console.user(`素数出力 完了しました。${resultamo}個`)
         });
 
       });
