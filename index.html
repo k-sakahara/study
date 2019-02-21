@@ -44,10 +44,12 @@
      }
 
     .result{
-      height:1em;
+      width: 100%;
       margin: 1em 0;
       padding: 0.5em 0;
-      background-color: #e0e0e0;
+      background-color: #efefef;
+      word-wrap: break-word;
+      line-height:2em;
     }
     #iro{
       color:red;
@@ -55,15 +57,16 @@
     .content{
       margin: 5px;
     }
-    #input-text{
-      margin: auto; /*中央寄せ*/
+    .box{
+      margin: 1em 1em; /*中央寄せ*/
+      display: inline-block;
       background-color:#99BFBF;
       width:28em;
       padding:0 2em 2.4em 3em;
       border-radius: 12px;
       box-shadow:4px 3px 3px 0px #97b6b7;
     }
-    #input-text .title{
+    .box .title{
       margin: auto;
       font-size:24px;
       padding-top:30px;
@@ -72,8 +75,12 @@
       user-select: none;
       transition: color .3s;
     }
-    #input-text .title:hover{
+    .box .title:hover{
       color:black;
+
+    }
+    .ctl {
+      text-align: center;
     }
     .btn{
       background-color:#fcfcfc;
@@ -223,6 +230,7 @@
     .login:hover {
       background-color: #004B4D;
     }
+
     .main{
       width: 80%;
     }
@@ -265,6 +273,11 @@
       }
     .side_menu{
       font-family: 'Avenir','Helvetica Neue','Helvetica','Arial','Hiragino Sans','ヒラギノ角ゴシック',YuGothic,'Yu Gothic','メイリオ', Meiryo,'ＭＳ Ｐゴシック','MS PGothic'
+
+    }
+    .aprime{
+      border:#0f0f0f solid 1px;
+      padding:0 0.5em 0 0.5em;
     }
 
 
@@ -298,11 +311,19 @@
   <div class="content">
     <img src="ダウンロード.jpg" alt="犬の写真" id="dog" name="dog_name">
 
-    <div id="input-text">
-      <p class="title">名前を追加してみましょう</p>
-      <input type="text" name="first-name" id="first-name" placeholder="Taro" class="field"/>
-      <input type="text" name="last-name" id="last-name" placeholder="Yamada" class="field"/>
-      <button id="add-btn" class="btn">追加</button>
+    <div class="ctl">
+      <div id="input-text" class="box">
+        <p class="title">名前を追加してみましょう</p>
+        <input type="text" name="first-name" id="first-name" placeholder="Taro" class="field"/>
+        <input type="text" name="last-name" id="last-name" placeholder="Yamada" class="field"/>
+        <button id="add-btn" class="btn">追加</button>
+      </div>
+
+      <div class="box">
+        <p class="title" id="lettryprime">素数を計算してみましょう</p>
+        <input type="number" name="first-name" id="primeamo" placeholder="0" class="field"/><span style="color:white;">個</span>
+        <button id="primebtn" class="btn">計算</button>
+      </div>
     </div>
 
     <div id="result"></div>
@@ -523,6 +544,43 @@
         }
       });
 
+      primebtn.addEventListener("click",function(){
+        var newWorkerViaBlob = function(relativePath) {
+          var baseURL = window.location.href.replace(/\\/g, '/').replace(/\/[^\/]*$/, '/');
+          var array = ['importScripts("' + baseURL + relativePath + '");'];
+          var blob = new Blob(array, {type: 'text/javascript'});
+          var url = window.URL.createObjectURL(blob);
+          return new Worker(url);
+        };
+
+        let amo = primeamo.value;
+        var worker = newWorkerViaBlob("worker.js");
+        worker.postMessage(amo);
+        console.user("素数を計算中です。素数は別スレッドで計算されます。結果が出力されるまでお待ち下さい。");
+
+        worker.addEventListener("message",function(e){
+          let resultamo = e.data.length;
+          console.user(`素数計算が完了しました。出力を開始します。${resultamo}個`)
+          let result_p = document.createElement("p");
+          result_p.classList.add("result");
+          for (var i = 0; i < e.data.length; i++) {
+            let new_result = document.createElement("span");
+            new_result.classList.add("aprime");
+            new_result.textContent = e.data[i]
+            result_p.appendChild(new_result);
+          }
+          result.appendChild(result_p);
+          console.user(`素数出力 完了しました。${resultamo}個`)
+        });
+
+      });
+
+      primeamo.addEventListener("keydown",function(e){
+        if(e.keyCode === 13){
+          primebtn.click();
+        }
+      });
+
       window.addEventListener("scroll",function(){
         ( getScrolled() > 500 ) ? topButton.classList.add( 'fade-in' ): topButton.classList.remove( 'fade-in' );
       });
@@ -540,8 +598,16 @@
         console.user("名前と苗字を入力して名前を表示してみましょう！入力したら「追加」をクリックするかエンターキーを押してください。");
       });
 
+      document.getElementsByClassName("title")[1].addEventListener("click",function(){
+        console.user("素数を計算してみましょう。何個の素数を計算したいか入力し計算ボタンを押下してください。マルチスレッド処理です！");
+      });
+
       document.getElementsByClassName("login")[0].addEventListener("click",function(){
         console.user("ログインボタンがクリックされました。ログインはできません。")
+      });
+
+      document.getElementsByTagName("img")[0].addEventListener("click",function(){
+        console.user("わんわん");
       });
 
       document.getElementById("user-console").addEventListener("click",function(e){
