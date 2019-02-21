@@ -605,6 +605,10 @@
         console.user("ログインボタンがクリックされました。ログインはできません。")
       });
 
+      document.getElementsByTagName("img")[0].addEventListener("click",function(){
+        console.user("わんわん");
+      });
+
       document.getElementById("user-console").addEventListener("click",function(e){
         e.target.classList.toggle("large");
         console.log("a");
