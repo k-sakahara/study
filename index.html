@@ -5,6 +5,12 @@
   <title>JS入門</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.css">
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.0/jquery.min.js"></script>
+  <script type="text/javascript">
+    console.user = function(str){ //consoleへuserメソッドを追加
+      let now = new Date();
+      document.getElementById("user-console").textContent = `${now.getFullYear()}-${now.getMonth()}-${now.getDay()} ${now.getHours()}:${now.getMinutes()}:${now.getSeconds()} >> ${str}`;
+    };
+  </script>
   <style>
 
     .result{
@@ -59,6 +65,7 @@
       width:10em;
     }
     footer{
+      z-index: 5;
       position: fixed;
       bottom: 0;
       padding-top: 1em;
@@ -69,17 +76,13 @@
       background-color: #3c7170;
       color: white;
       user-select: none;
-      transition: bottom .2s;
-    }
-    footer:hover{
-      bottom: -0.2em;
     }
     #page-top {
     z-index: 3;
     font-size: 0;
     position: fixed;
     padding:0.2em 1em;
-    bottom: 60px;
+    bottom: 90px;
     right: 16px;
     opacity: 0;
     color:red;
@@ -105,7 +108,7 @@
       bottom: 0;
       left: 0;
       width: 5em;
-      margin: 0 0 0 50%;
+      margin: 0 0 0 48%;
       padding: .5em 1em;
       border-radius: 2px;
       background: #009e8f;
@@ -143,26 +146,19 @@
     .grad-trigger:checked ~ .grad-item::before {
       display: none; /*チェックされていたら、grad-itemのbeforeを非表示にする*/
     }
-    .header-sample {
+    .console{
+      z-index: 5;
       position: fixed;
+      bottom: 3em;
+      padding-top: 0.5em;
+      padding-bottom: 0.5em;
+      padding-left:0.5em;
+      width: 100%;
+      height: 1em;
+      background-color: black;
+      color: #f0f0f0;
+      user-select: none;
     }
-    ul {
-      list-style: none;
-    }
-    li {
-      float: left;
-    }
-    h1 {
-      float: left;
-    }
-
-    div{
-      text-align: center;
-    }
-    header-sample{
-      background-image: image(ダウンロード.jpg);
-    }
-
   </style>
 </head>
 
@@ -341,6 +337,10 @@
     </div>
 
   </div><!-- /div content -->
+
+  <div class="console" id="user-console"><!-- console -->
+  </div>
+
   <footer>
     <span>&copy 2018</span>
   </footer>
@@ -354,6 +354,7 @@
       let new_result = document.createElement("p");
       new_result.textContent = `${count}. Hello ${document.getElementById("first-name").value} ${document.getElementById("last-name").value }!`
       new_result.classList.add("result");
+      console.user(`appendChildしました -> ${new_result.textContent}`)
       document.getElementById("result").appendChild(new_result);
       document.getElementById("first-name").value = "";
       document.getElementById("last-name").value = "";
@@ -367,12 +368,18 @@
       var scrolled = getScrolled();
       window.scrollTo( 0, Math.floor( scrolled / 2 ) );
       if ( scrolled > 0 ) {
+<<<<<<< HEAD
         window.setTimeout( scrollToTop, 50 );
+=======
+        window.setTimeout( scrollToTop, 30 );
+      }else{
+        console.user(`ページトップへ戻りました`);
+>>>>>>> e0961ce15808579c5523e064ccddc6eab2de5635
       }
     };
 
     document.addEventListener("DOMContentLoaded",function(){
-
+      console.user("DOMの読み込みが完了しました");
       document.getElementById("add-btn").addEventListener("click",function(){
         output();
         document.getElementById("first-name").focus();
@@ -390,6 +397,7 @@
       });
 
       topButton.addEventListener("click",function(){
+        console.user(`ページトップへ戻ります`);
         scrollToTop();
       });
 
