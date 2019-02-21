@@ -18,6 +18,24 @@
     .content{
       margin: 1vw;
     }
+    .btn{
+      background-color:#fdfdfd;
+      border:1px solid #101010;
+      padding: 0 2em 0 2em;
+      height:2em;
+      border-radius: 0.8em; /*角丸*/
+      outline: 0;/*フォーカス時のブラウザデフォルトのデザインを消す*/
+      transition: background-color .1s;
+    }
+    .btn:hover{
+      background-color:#a3d6cc;
+    }
+    .btn:active{
+      background-color:#006a6c;
+    }
+    .field{
+      height:1.5em;
+    }
     footer{
       position: fixed;
       bottom: 0;
@@ -62,9 +80,9 @@
     <div id="iro">CSSで色を変更</div>
 
     <div id="input-text">
-      <input type="text" name="first-name" id="first-name" placeholder="Taro"/>
-      <input type="text" name="last-name" id="last-name" placeholder="Yamada"/>
-      <button id="add-btn">追加</button>
+      <input type="text" name="first-name" id="first-name" placeholder="Taro" class="field"/>
+      <input type="text" name="last-name" id="last-name" placeholder="Yamada" class="field"/>
+      <button id="add-btn" class="btn">追加</button>
     </div>
 
     <div id="result"></div>
