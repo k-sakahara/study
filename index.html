@@ -18,11 +18,14 @@
       }
       return length;
     };
-
+    console.userlog = [];
+    console.userlogtmp = "";
     console.user = function(str){ //consoleへuserメソッドを追加
       if(str.bytes() <= 160){
         let now = new Date();
-        document.getElementById("user-console").textContent = `${now.getFullYear()}-${now.getMonth()}-${now.getDay()} ${now.getHours()}:${now.getMinutes()}:${now.getSeconds()} >> ${str}`;
+        let result = `${now.getFullYear()}-${("0"+now.getMonth()).slice(-2)}-${("0"+now.getDay()).slice(-2)} ${("0"+now.getHours()).slice(-2)}:${("0"+now.getMinutes()).slice(-2)}:${("0"+now.getSeconds()).slice(-2)} >> ${str}`;
+        document.getElementById("user-console").textContent = result;
+        console.userlog.push(result);
       }else{
         Error("console.userは160bytes(SJIS)までしか表示できません");
       }
@@ -35,6 +38,7 @@
       overflow: auto;
       color:white;
       padding:10px 20px;
+      height:50px;
      }
 
     .result{
@@ -53,14 +57,15 @@
       margin: auto; /*中央寄せ*/
       background-color:#99BFBF;
       width:28em;
-      padding:0 3em 3em 3em;
+      padding:0 2em 2.4em 3em;
       border-radius: 12px;
+      box-shadow:4px 3px 3px 0px #97b6b7;
     }
     #input-text .title{
       margin: auto;
       font-size:24px;
-      padding-top:24px;
-      margin-bottom:12px;
+      padding-top:30px;
+      margin-bottom:16px;
       color:white;
       user-select: none;
       transition: color .3s;
@@ -69,9 +74,10 @@
       color:black;
     }
     .btn{
-      background-color:#fdfdfd;
-      border:1px solid #101010;
+      background-color:#fcfcfc;
+      border:1px solid #3c7170;
       padding: 0 2em 0 2em;
+      margin-left:auto;
       height:2em;
       border-radius: 0.8em; /*角丸*/
       outline: 0;/*フォーカス時のブラウザデフォルトのデザインを消す*/
@@ -121,7 +127,7 @@
     transition: opacity 1s;
     }
     .story{
-      margin:1em 0;
+      margin:1em 0 2em 0;
       color:#101010;
       padding:0 1em 3em 1em;
     }
@@ -181,7 +187,13 @@
       height: 1em;
       background-color: black;
       color: #f0f0f0;
+      opacity: 1;
       user-select: none;
+      transition: height .3s,opacity .3s;
+    }
+    .console.large{
+      opacity: 0.8;
+      height:75vh;
     }
 
     li{
@@ -190,15 +202,24 @@
       font-size: 8px;
     }
     .login{
-      float: right;
-      background-color: rgba(255, 255, 255, 0.3);
+      /* background-color: rgba(255, 255, 255, 0.3);
       text-decoration: none;
       transition: all 1s;
-      line-height: 30px;
-      display: block;
+      line-height: 30px; */
+      font-size:18px;
+      text-decoration: none;
+      color:#f0f0f0;
+      padding:0 3em;
+      border-left: solid #004B4D 1px;
+      line-height:70px;
+      height:70px;
+      position:absolute;
+      top:0;
+      right:0;
+      transition: background-color .2s;
     }
     .login:hover {
-      background-color: red;
+      background-color: #004B4D;
     }
     .main{
       width: 80%;
@@ -262,6 +283,7 @@
           <li>メニュー３</li>
         </ul>
       </div>
+      <a href="#" class="login">ログイン</a>
     </div>
 
   </header>
@@ -481,13 +503,9 @@
       var scrolled = getScrolled();
       window.scrollTo( 0, Math.floor( scrolled / 2 ) );
       if ( scrolled > 0 ) {
-<<<<<<< HEAD
-        window.setTimeout( scrollToTop, 50 );
-=======
         window.setTimeout( scrollToTop, 30 );
       }else{
         console.user(`ページトップへ戻りました`);
->>>>>>> e0961ce15808579c5523e064ccddc6eab2de5635
       }
     };
 
@@ -521,6 +539,31 @@
       document.getElementsByClassName("title")[0].addEventListener("click",function(){
         console.user("名前と苗字を入力して名前を表示してみましょう！入力したら「追加」をクリックするかエンターキーを押してください。");
       });
+
+      document.getElementsByClassName("login")[0].addEventListener("click",function(){
+        console.user("ログインボタンがクリックされました。ログインはできません。")
+      });
+
+      document.getElementById("user-console").addEventListener("click",function(e){
+        e.target.classList.toggle("large");
+        console.log("a");
+        if(e.target.classList.contains("large")){
+          setTimeout(function(){
+            console.userlogtmp = document.getElementById("user-console").textContent;
+            document.getElementById("user-console").textContent = "";
+            var i = console.userlog.length - 40;
+            for (i; i <= console.userlog.length; i++) {
+              if ( typeof(console.userlog[i]) !== "undefined" ){
+                document.getElementById("user-console").innerText = document.getElementById("user-console").innerText + console.userlog[i] + "\n"
+              }
+            }
+          },200); //展開中にtextContentを書き換えると重い事があるので待つ
+          //consoleがでかいとき
+        }else{
+          //consoleが通常サイズの時
+          document.getElementById("user-console").textContent = console.userlogtmp;
+        }
+      }); //コンソール展開用クリックリスナここまで
     });//endDomContentLoaded
 
   </script>
