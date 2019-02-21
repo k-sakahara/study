@@ -6,9 +6,26 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.css">
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.0/jquery.min.js"></script>
   <script type="text/javascript">
+    String.prototype.bytes = function () { //String.bytes()メソッド変更 (全角2バイトカウントにするため)
+      var length = 0;
+      for (var i = 0; i < this.length; i++) {
+        var c = this.charCodeAt(i);
+        if ((c >= 0x0 && c < 0x81) || (c === 0xf8f0) || (c >= 0xff61 && c < 0xffa0) || (c >= 0xf8f1 && c < 0xf8f4)) {
+          length += 1;
+        } else {
+          length += 2;
+        }
+      }
+      return length;
+    };
+
     console.user = function(str){ //consoleへuserメソッドを追加
-      let now = new Date();
-      document.getElementById("user-console").textContent = `${now.getFullYear()}-${now.getMonth()}-${now.getDay()} ${now.getHours()}:${now.getMinutes()}:${now.getSeconds()} >> ${str}`;
+      if(str.bytes() <= 160){
+        let now = new Date();
+        document.getElementById("user-console").textContent = `${now.getFullYear()}-${now.getMonth()}-${now.getDay()} ${now.getHours()}:${now.getMinutes()}:${now.getSeconds()} >> ${str}`;
+      }else{
+        Error("console.userは160bytes(SJIS)までしか表示できません");
+      }
     };
   </script>
   <style>
@@ -397,6 +414,13 @@
         scrollToTop();
       });
 
+      document.getElementsByClassName("grad-btn")[0].addEventListener("click",function(){
+        console.user("長文を展開しました");
+      });
+
+      document.getElementsByClassName("title")[0].addEventListener("click",function(){
+        console.user("名前と苗字を入力して名前を表示してみましょう！入力したら「追加」をクリックするかエンターキーを押してください。");
+      });
     });//endDomContentLoaded
 
   </script>
