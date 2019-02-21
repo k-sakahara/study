@@ -14,9 +14,11 @@
 
   <span id="result"></span>
   <script type="text/javascript">
-    document.getElementById("input-text").addEventListener("change",function(){
-      elem.textContent = `Hello ${document.getElementById("first-name").value}　${document.getElementById("last-name").value}`
-    });
+    document.addEventListener("DOMContentLoaded",function(){
+      document.getElementById("input-text").addEventListener("change",function(){
+        elem.textContent = `Hello ${document.getElementById("first-name").value}　${document.getElementById("last-name").value}`
+      });//endInputEventListener
+    });//endDomContentLoaded
   </script>
   <noscript></noscript>
 </body>
