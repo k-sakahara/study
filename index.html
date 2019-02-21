@@ -18,6 +18,24 @@
     .content{
       margin: 1vw;
     }
+    #input-text{
+      background-color:#99BFBF;
+      width:28em;
+      padding:0 3em 3em 3em;
+      border-radius: 12px;
+    }
+    #input-text .title{
+      margin: auto;
+      font-size:24px;
+      padding-top:24px;
+      margin-bottom:12px;
+      color:white;
+      user-select: none;
+      transition: color .3s;
+    }
+    #input-text .title:hover{
+      color:black;
+    }
     .btn{
       background-color:#fdfdfd;
       border:1px solid #101010;
@@ -25,16 +43,18 @@
       height:2em;
       border-radius: 0.8em; /*角丸*/
       outline: 0;/*フォーカス時のブラウザデフォルトのデザインを消す*/
-      transition: background-color .1s;
+      transition: background-color .1s,color .1s;
     }
     .btn:hover{
       background-color:#a3d6cc;
     }
     .btn:active{
       background-color:#006a6c;
+      color:white;
     }
     .field{
       height:1.5em;
+      width:10em;
     }
     footer{
       position: fixed;
@@ -80,6 +100,7 @@
     <div id="iro">CSSで色を変更</div>
 
     <div id="input-text">
+      <p class="title">名前を追加してみましょう</p>
       <input type="text" name="first-name" id="first-name" placeholder="Taro" class="field"/>
       <input type="text" name="last-name" id="last-name" placeholder="Yamada" class="field"/>
       <button id="add-btn" class="btn">追加</button>
