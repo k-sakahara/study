@@ -116,16 +116,18 @@
       document.getElementById("result").appendChild(new_result);
       document.getElementById("first-name").value = "";
       document.getElementById("last-name").value = "";
-    }
+    }//end output function
     document.addEventListener("DOMContentLoaded",function(){
 
       document.getElementById("add-btn").addEventListener("click",function(){
         output();
+        document.getElementById("first-name").focus();
       });//endInputEventListener
 
       document.getElementById("input-text").addEventListener("keydown",function(ev){
         if(ev.keyCode===13){
           output();
+          document.getElementById("first-name").focus();
         }
       });
 
