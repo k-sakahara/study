@@ -145,6 +145,18 @@
     .grad-trigger:checked ~ .grad-item::before {
       display: none; /*チェックされていたら、grad-itemのbeforeを非表示にする*/
     }
+    .console{
+      position: fixed;
+      bottom: 3em;
+      padding-top: 0.5em;
+      padding-bottom: 0.5em;
+      padding-left:0.5em;
+      width: 100%;
+      height: 1em;
+      background-color: black;
+      color: #f0f0f0;
+      user-select: none;
+    }
   </style>
 </head>
 
@@ -317,6 +329,10 @@
     </div>
 
   </div><!-- /div content -->
+
+  <div class="console" id="user-console"><!-- console -->
+  </div>
+
   <footer>
     <span>&copy 2018</span>
   </footer>
@@ -324,12 +340,17 @@
   <!-- Script -->
   <script type="text/javascript">
     let count = 0; //GLOBAL
+    console.user = function(str){
+      let now = new Date();
+      document.getElementById("user-console").textContent = `${now.getFullYear()}-${now.getMonth()}-${now.getDay()} ${now.getHours()}:${now.getMinutes()}:${now.getSeconds()} >> ${str}`;
+    };
     const topButton = document.getElementById('page-top');
     const output = function(){ //文字出力用関数
       count++;
       let new_result = document.createElement("p");
       new_result.textContent = `${count}. Hello ${document.getElementById("first-name").value} ${document.getElementById("last-name").value }!`
       new_result.classList.add("result");
+      console.user(`appendChildしました -> ${new_result.textContent}`)
       document.getElementById("result").appendChild(new_result);
       document.getElementById("first-name").value = "";
       document.getElementById("last-name").value = "";
