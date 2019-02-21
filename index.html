@@ -72,9 +72,10 @@
       color:black;
     }
     .btn{
-      background-color:#fdfdfd;
-      border:1px solid #101010;
+      background-color:#fcfcfc;
+      border:0.5px solid #101010;
       padding: 0 2em 0 2em;
+      margin-left:auto;
       height:2em;
       border-radius: 0.8em; /*角丸*/
       outline: 0;/*フォーカス時のブラウザデフォルトのデザインを消す*/
@@ -184,10 +185,12 @@
       height: 1em;
       background-color: black;
       color: #f0f0f0;
+      opacity: 1;
       user-select: none;
-      transition: height .3s;
+      transition: height .3s,opacity .3s;
     }
     .console.large{
+      opacity: 0.8;
       height:75vh;
     }
 
@@ -476,7 +479,7 @@
           //consoleが通常サイズの時
           document.getElementById("user-console").textContent = console.userlogtmp;
         }
-      });
+      }); //コンソール展開用クリックリスナここまで
     });//endDomContentLoaded
 
   </script>
