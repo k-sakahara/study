@@ -14,6 +14,22 @@
     #iro{
       color:red;
     }
+    footer{
+      position: fixed;
+      bottom: 0;
+      padding-top: 1em;
+      padding-bottom: 1em;
+      width: 100%;
+      height: 1em;
+      text-align: center;
+      background-color: #3c7170;
+      color: white;
+      user-select: none;
+      transition: bottom .2s;
+    }
+    footer:hover{
+      bottom: -0.2em;
+    }
   </style>
 </head>
 <body>
@@ -31,6 +47,12 @@
   </div>
 
   <span id="result"></span>
+
+  <footer>
+    <span>&copy 2018</span>
+  </footer>
+
+  <!-- Script -->
   <script type="text/javascript">
     document.addEventListener("DOMContentLoaded",function(){
 
