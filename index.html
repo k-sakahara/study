@@ -18,11 +18,14 @@
       }
       return length;
     };
-
+    console.userlog = [];
+    console.userlogtmp = "";
     console.user = function(str){ //consoleへuserメソッドを追加
       if(str.bytes() <= 160){
         let now = new Date();
-        document.getElementById("user-console").textContent = `${now.getFullYear()}-${now.getMonth()}-${now.getDay()} ${now.getHours()}:${now.getMinutes()}:${now.getSeconds()} >> ${str}`;
+        let result = `${now.getFullYear()}-${("0"+now.getMonth()).slice(-2)}-${("0"+now.getDay()).slice(-2)} ${("0"+now.getHours()).slice(-2)}:${("0"+now.getMinutes()).slice(-2)}:${("0"+now.getSeconds()).slice(-2)} >> ${str}`;
+        document.getElementById("user-console").textContent = result;
+        console.userlog.push(result);
       }else{
         Error("console.userは160bytes(SJIS)までしか表示できません");
       }
@@ -180,6 +183,10 @@
       background-color: black;
       color: #f0f0f0;
       user-select: none;
+      transition: height .3s;
+    }
+    .console.large{
+      height:75vh;
     }
 
     li{
@@ -400,13 +407,9 @@
       var scrolled = getScrolled();
       window.scrollTo( 0, Math.floor( scrolled / 2 ) );
       if ( scrolled > 0 ) {
-<<<<<<< HEAD
-        window.setTimeout( scrollToTop, 50 );
-=======
         window.setTimeout( scrollToTop, 30 );
       }else{
         console.user(`ページトップへ戻りました`);
->>>>>>> e0961ce15808579c5523e064ccddc6eab2de5635
       }
     };
 
@@ -439,6 +442,25 @@
 
       document.getElementsByClassName("title")[0].addEventListener("click",function(){
         console.user("名前と苗字を入力して名前を表示してみましょう！入力したら「追加」をクリックするかエンターキーを押してください。");
+      });
+
+      document.getElementById("user-console").addEventListener("click",function(e){
+        e.target.classList.toggle("large");
+        console.log("a");
+        if(e.target.classList.contains("large")){
+          //consoleがでかいとき
+          console.userlogtmp = document.getElementById("user-console").textContent;
+          document.getElementById("user-console").textContent = "";
+          var i = console.userlog.length - 40;
+          for (i; i <= console.userlog.length; i++) {
+            if ( typeof(console.userlog[i]) !== "undefined" ){
+              document.getElementById("user-console").innerText = document.getElementById("user-console").innerText + console.userlog[i] + "\n"
+            }
+          }
+        }else{
+          //consoleが通常サイズの時
+          document.getElementById("user-console").textContent = console.userlogtmp;
+        }
       });
     });//endDomContentLoaded
 
