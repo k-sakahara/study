@@ -34,11 +34,13 @@
   <style>
 
     .header{
+
       background-color: #3c7170;
       overflow: auto;
       color:white;
       padding:10px 20px;
       height:50px;
+
      }
 
     .result{
@@ -265,6 +267,7 @@
       font-family: 'Avenir','Helvetica Neue','Helvetica','Arial','Hiragino Sans','ヒラギノ角ゴシック',YuGothic,'Yu Gothic','メイリオ', Meiryo,'ＭＳ Ｐゴシック','MS PGothic'
     }
 
+
   </style>
 </head>
 
@@ -293,7 +296,7 @@
   <div id="page-top" class="blogicon-chevron-up">上へ</div>
 
   <div class="content">
-    <img src="ダウンロード.jpg" alt="犬の写真">
+    <img src="ダウンロード.jpg" alt="犬の写真" id="dog" name="dog_name">
 
     <div id="input-text">
       <p class="title">名前を追加してみましょう</p>
@@ -473,8 +476,6 @@
 
 
 
-
-
   <footer>
     <span>&copy 2018</span>
   </footer>
@@ -563,7 +564,33 @@
           document.getElementById("user-console").textContent = console.userlogtmp;
         }
       }); //コンソール展開用クリックリスナここまで
+
+
+        var pics_src = new Array("ダウンロード.jpg","2.jpg");
+        num = -1;
+
+        var slideShow_timer = function(){
+
+          if(num == 2){
+            num =0;
+          }else{
+            num++;
+          }
+
+
+          document.getElementById('dog').src=pics_src[num];
+          setInterval(slideShow_timer,3000);
+
+
+          console.log(pics_src[num]);
+
+        };
+          slideShow_timer();
+
+
     });//endDomContentLoaded
+
+
 
   </script>
   <noscript></noscript>
