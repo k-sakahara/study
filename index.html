@@ -39,6 +39,8 @@
         new_result.textContent = `Hello ${document.getElementById("first-name").value} ${document.getElementById("last-name").value }!`
         new_result.classList.add("result");
         document.getElementById("result").appendChild(new_result);
+        document.getElementById("first-name").value = "";
+        document.getElementById("last-name").value = "";
       });//endInputEventListener
 
     });//endDomContentLoaded
