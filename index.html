@@ -228,9 +228,50 @@
     .login:hover {
       background-color: #004B4D;
     }
-    .aprime{
-      border-left:#0f0f0f solid 1px;
-      padding:0 0.5em 0 0.5em;
+
+    .main{
+      width: 80%;
+    }
+
+    .container{
+      display: flex;
+    }
+    .side{
+      font-size: 100%;
+	    text-align: left;
+    	font-weight: bold;
+	    width: 20%;
+      font-size: 30px;
+      letter-spacing: 0.5px;
+      line-height: 50px;
+    }
+    .authers{
+      font-size:10px;
+      padding:5px;
+      height:10px;
+    }
+    .authers :hover{
+      color:red;
+    }
+    .button_style{
+      display: inline-block;
+      padding: 0.5em 1em;
+      text-decoration: none;
+      background: #f7f7f7;
+      border-left: solid 6px #ff7c5c;/*左線*/
+      color: #ff7c5c;/*文字色*/
+      font-weight: bold;
+      box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.29);
+      height:40px
+      }
+    .button_style:active {
+      box-shadow: inset 0 0 2px rgba(128, 128, 128, 0.1);
+      transform: translateY(2px);
+
+      }
+    .side_menu{
+      font-family: 'Avenir','Helvetica Neue','Helvetica','Arial','Hiragino Sans','ヒラギノ角ゴシック',YuGothic,'Yu Gothic','メイリオ', Meiryo,'ＭＳ Ｐゴシック','MS PGothic'
+
     }
 
   </style>
@@ -242,6 +283,7 @@
   <header>
     <div class="header">
       <div  class="header-logo">ヘッダ</div>
+
       <div class="header-list">
         <ul class ="menu">
           <li>メニュー１</li>
@@ -251,7 +293,10 @@
       </div>
       <a href="#" class="login">ログイン</a>
     </div>
+
   </header>
+  <div class="container">
+    <div class="main">
 
   <!-- トップに戻るボタン -->
   <div id="page-top" class="blogicon-chevron-up">上へ</div>
@@ -427,6 +472,25 @@
 
   <div class="console" id="user-console"><!-- console -->
   </div>
+  </div>
+    <div class="side">
+      <div class="side_menu">サイドメニュー</div>
+          <ul class="authers">
+            <li ><input type="button" value="太宰治" class="button_style"/></li><br>
+            <li ><input type="button" value="村上春樹" class="button_style"/></li><br>
+            <li ><input type="button" value="朝井リョウ" class="button_style"/></li><br>
+            <li ><input type="button" value="三島由紀夫" class="button_style"/></li><br>
+            <li ><input type="button" value="江國香織" class="button_style"/></li><br>
+            <li ><input type="button" value="三浦しをん" class="button_style"/></li><br>
+            <li ><input type="button" value="吉野匠" class="button_style"/></li><br>
+            <li ><input type="button" value="川端康成" class="button_style"/></li><br>
+
+          </ul>
+    </div>
+
+
+
+
 
   <footer>
     <span>&copy 2018</span>
