@@ -31,8 +31,10 @@
   <style>
 
     .header{
-
-      background-color: #26d0c9;
+      background-color: #3c7170;
+      overflow: auto;
+      color:white;
+      padding:10px 20px;
      }
 
     .result{
@@ -184,9 +186,20 @@
 
     li{
       float: left;
+      list-style: none;
+      font-size: 8px;
     }
-
-
+    .login{
+      float: right;
+      background-color: rgba(255, 255, 255, 0.3);
+      text-decoration: none;
+      transition: all 1s;
+      line-height: 30px;
+      display: block;
+    }
+    .login:hover {
+      background-color: red;
+    }
 
   </style>
 </head>
@@ -195,15 +208,17 @@
 <body class="backcolor">
 
   <header>
-    <div class="header"></div>
-      <div  class="header-logo">Practise</div>
+    <div class="header">
+      <div  class="header-logo">ヘッダ</div>
+      <a href="#" class="login">ログイン</a>
       <div class="header-list">
-        <ul>
+        <ul class ="menu">
           <li>メニュー１</li>
           <li>メニュー２</li>
           <li>メニュー３</li>
         </ul>
       </div>
+    </div>
   </header>
 
   <!-- トップに戻るボタン -->
