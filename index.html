@@ -80,25 +80,28 @@
     footer:hover{
       bottom: -0.2em;
     }
-
     #page-top {
     font-size: 0;
     position: fixed;
-    bottom: 36px;
+    padding:0.2em 1em;
+    bottom: 60px;
     right: 16px;
     opacity: 0;
     color:red;
+    background-color:#006a6c;
+    border-radius: 0.8em;
     user-select: none;
     }
     #page-top.fade-in {
-    color: #000;
-    font-size: 60px;
+    color: #fff;
+    font-size: 40px;
     opacity: 0.6;
     transition: opacity 1s;
     }
     .story{
       margin:1em 0;
       color:#101010;
+      padding:0 1em 3em 1em;
     }
   </style>
 </head>
@@ -354,8 +357,9 @@
 
   <!-- Script -->
   <script type="text/javascript">
-    let count = 0;
-    const output = function(){
+    let count = 0; //GLOBAL
+    const topButton = document.getElementById('page-top');
+    const output = function(){ //文字出力用関数
       count++;
       let new_result = document.createElement("p");
       new_result.textContent = `${count}. Hello ${document.getElementById("first-name").value} ${document.getElementById("last-name").value }!`
@@ -364,6 +368,19 @@
       document.getElementById("first-name").value = "";
       document.getElementById("last-name").value = "";
     }//end output function
+
+    const getScrolled = function() {
+     return ( window.pageYOffset !== undefined ) ? window.pageYOffset: document.documentElement.scrollTop;
+    };
+
+    const scrollToTop= function() {
+      var scrolled = getScrolled();
+      window.scrollTo( 0, Math.floor( scrolled / 2 ) );
+      if ( scrolled > 0 ) {
+        window.setTimeout( scrollToTop, 30 );
+      }
+    };
+
     document.addEventListener("DOMContentLoaded",function(){
 
       document.getElementById("add-btn").addEventListener("click",function(){
@@ -378,32 +395,15 @@
         }
       });
 
+      window.addEventListener("scroll",function(){
+        ( getScrolled() > 500 ) ? topButton.classList.add( 'fade-in' ): topButton.classList.remove( 'fade-in' );
+      });
+
+      topButton.addEventListener("click",function(){
+        scrollToTop();
+      });
+
     });//endDomContentLoaded
-
-
-
-  //上へ戻るボタン
-  function getScrolled() {
-   return ( window.pageYOffset !== undefined ) ? window.pageYOffset: document.documentElement.scrollTop;
-  }
-  var topButton = document.getElementById( 'page-top' );
-
-  window.onscroll = function() {
-    ( getScrolled() > 500 ) ? topButton.classList.add( 'fade-in' ): topButton.classList.remove( 'fade-in' );
-  };
-
-  function scrollToTop() {
-    var scrolled = getScrolled();
-    window.scrollTo( 0, Math.floor( scrolled / 2 ) );
-    if ( scrolled > 0 ) {
-      window.setTimeout( scrollToTop, 30 );
-    }
-  };
-
-  topButton.onclick = function() {
-    scrollToTop();
-  };
-
 
   </script>
   <noscript></noscript>
