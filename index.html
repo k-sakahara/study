@@ -28,7 +28,7 @@
 
       document.getElementById("add-btn").addEventListener("click",function(){
         let new_result = document.createElement("p");
-        new_result.textContent = `Hello ${document.getElementById("first-name").value}　${document.getElementById("last-name").value}`
+        new_result.textContent = `Hello ${document.getElementById("first-name").value} ${document.getElementById("last-name").value }!`
         new_result.classList.add("result");
         document.getElementById("result").appendChild(new_result);
       });//endInputEventListener
