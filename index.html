@@ -573,6 +573,12 @@
 
       });
 
+      primeamo.addEventListener("keydown",function(e){
+        if(e.keyCode === 13){
+          primebtn.click();
+        }
+      });
+
       window.addEventListener("scroll",function(){
         ( getScrolled() > 500 ) ? topButton.classList.add( 'fade-in' ): topButton.classList.remove( 'fade-in' );
       });
