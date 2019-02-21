@@ -14,6 +14,9 @@
     #iro{
       color:red;
     }
+    .content{
+      margin: 1vw;
+    }
     footer{
       position: fixed;
       bottom: 0;
@@ -33,21 +36,22 @@
   </style>
 </head>
 <body class="backcolor">
-  <img src="ダウンロード.jpg" alt="犬の写真">
-  <div id="iro">CSSで色を変更</div>
+  <div class="content">
+    <img src="ダウンロード.jpg" alt="犬の写真">
+    <div id="iro">CSSで色を変更</div>
 
 
-  <div id="input-text">
-    <input type="text" name="first-name" id="first-name" placeholder="Taro"/>
-    <input type="text" name="last-name" id="last-name" placeholder="Yamada"/>
-    <button id="add-btn">追加</button>
-  </div>
+    <div id="input-text">
+      <input type="text" name="first-name" id="first-name" placeholder="Taro"/>
+      <input type="text" name="last-name" id="last-name" placeholder="Yamada"/>
+      <button id="add-btn">追加</button>
+    </div>
 
-  <div id="result">
-  </div>
+    <div id="result">
+    </div>
 
-  <span id="result"></span>
-
+    <span id="result"></span>
+  </div><!-- /div content -->
   <footer>
     <span>&copy 2018</span>
   </footer>
