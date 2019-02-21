@@ -81,6 +81,7 @@
       bottom: -0.2em;
     }
     #page-top {
+    z-index: 3;
     font-size: 0;
     position: fixed;
     padding:0.2em 1em;
@@ -102,6 +103,51 @@
       margin:1em 0;
       color:#101010;
       padding:0 1em 3em 1em;
+    }
+    .grad-btn {
+      z-index: 2;
+      position: relative;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      width: 5em;
+      margin: 0 0 0 50%;
+      padding: .5em 1em;
+      border-radius: 2px;
+      background: #009e8f;
+      color: #fff;
+      font-size: 16px;
+      text-align: center;
+      cursor: pointer;
+      box-shadow: 0 0 3px rgba(0,0,0,.3);
+    }
+    .grad-item {
+      position: relative;
+      overflow: hidden;
+      height: 30px; /*隠した状態の高さ*/
+    }
+    .grad-item::before {
+      display: block;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 80px; /*グラデーションで隠す高さ*/
+      background: -webkit-linear-gradient(top, rgba(255,255,255,0) 0%, rgba(255,255,255,0.9) 50%, rgba(255,255,255,0.9) 50%, #fff 100%);
+      background: linear-gradient(top, rgba(255,255,255,0) 0%, rgba(255,255,255,0.9) 50%, rgba(255,255,255,0.9) 50%, #fff 100%);
+      content: "";
+    }
+    .grad-trigger {
+      display: none; /*チェックボックスは常に非表示*/
+    }
+    .grad-trigger:checked + .grad-btn {
+      display: none; /*チェックされていたら、grad-btnを非表示にする*/
+    }
+    .grad-trigger:checked ~ .grad-item {
+      height: auto; /*チェックされていたら、高さを戻す*/
+    }
+    .grad-trigger:checked ~ .grad-item::before {
+      display: none; /*チェックされていたら、grad-itemのbeforeを非表示にする*/
     }
   </style>
 </head>
@@ -128,9 +174,12 @@
 
     <div id="result"></div>
 
-    <div class="story">
+    <div class="story grad-warp">
       そのころわたくしは、モリーオ市の博物局に勤めて居りました。<br>
       十八等官でしたから役所のなかでも、ずうっと下の方でしたし俸給ほうきゅうもほんのわずかでしたが、受持ちが標本の採集や整理で生れ付き好きなことでしたから、わたくしは毎日ずいぶん愉快にはたらきました。殊にそのころ、モリーオ市では競馬場を植物園に拵こしらえ直すというので、その景色のいいまわりにアカシヤを植え込んだ広い地面が、切符売場や信号所の建物のついたまま、わたくしどもの役所の方へまわって来たものですから、わたくしはすぐ宿直という名前で月賦で買った小さな蓄音器と二十枚ばかりのレコードをもって、その番小屋にひとり住むことになりました。わたくしはそこの馬を置く場所に板で小さなしきいをつけて一疋の山羊を飼いました。毎朝その乳をしぼってつめたいパンをひたしてたべ、それから黒い革のかばんへすこしの書類や雑誌を入れ、靴もきれいにみがき、並木のポプラの影法師を大股にわたって市の役所へ出て行くのでした。<br>
+      <input id="trigger1" class="grad-trigger" type="checkbox">
+      <label class="grad-btn" for="trigger1">続きを読む</label>
+      <div class="grad-item">
       あのイーハトーヴォのすきとおった風、夏でも底に冷たさをもつ青いそら、うつくしい森で飾られたモリーオ市、郊外のぎらぎらひかる草の波。<br>
       またそのなかでいっしょになったたくさんのひとたち、ファゼーロとロザーロ、羊飼のミーロや、顔の赤いこどもたち、地主のテーモ、山猫博士のボーガント・デストゥパーゴなど、いまこの暗い巨きな石の建物のなかで考えていると、みんなむかし風のなつかしい青い幻燈のように思われます。では、わたくしはいつかの小さなみだしをつけながら、しずかにあの年のイーハトーヴォの五月から十月までを書きつけましょう。<br>
       一、遁げた山羊<br>
@@ -349,6 +398,7 @@
       百姓はわざと顔を前につき出して云いました。<br>
       「このむちですかい。あなたはこの鞭むちのことを仰っしゃったんですか。この鞭はねえ、人を使う鞭ではありませんよ。馬を追う鞭ですよ。あっちへ馬が四疋も行ってますからねえ。そらね、こんなふうに。」<br>
       百姓はわたくしの顔の前でパチッパチッとはげしく鞭を鳴らしました。わたくしはさあっと血が頭にのぼるのを感じました。けれどもまた、いま争うときでないと考えて山羊の方を見ました。山羊はあちこち草をたべながら向うに行っていました。百姓はファゼーロの行った方へ行き、わたくしも山羊の方へ歩きだしました。山羊に追いついてからふりかえって見ますと畑いちめん紺いろの地平線までぎらぎらのかげろうで百姓の赤い頭巾もみんなごちゃごちゃにゆれていました。その向うの一そう烈しいかげろうの中でピカッと白くひかる農具と黒い影法師のようにあるいている馬と、ファゼーロかそれともほかのこどもか、しきりに手をふって馬をうごかしているのをわたくしは見ました。
+      </div><!-- /hide -->
     </div>
 
   </div><!-- /div content -->
