@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <title>JS入門</title>
   <style>
-    #elem{
+    .result{
       height:1em;
       margin: 1em 0;
       padding: 0.5em 0;
@@ -13,19 +13,26 @@
   </style>
 </head>
 <body>
-  <div id="elem"></div>
-
   <div id="input-text">
     <input type="text" name="first-name" id="first-name"/>
     <input type="text" name="last-name" id="last-name"/>
+    <button id="add-btn">追加</button>
+  </div>
+
+  <div id="result">
   </div>
 
   <span id="result"></span>
   <script type="text/javascript">
     document.addEventListener("DOMContentLoaded",function(){
-      document.getElementById("input-text").addEventListener("change",function(){
-        elem.textContent = `Hello ${document.getElementById("first-name").value}　${document.getElementById("last-name").value}`
+
+      document.getElementById("add-btn").addEventListener("click",function(){
+        let new_result = document.createElement("p");
+        new_result.textContent = `Hello ${document.getElementById("first-name").value}　${document.getElementById("last-name").value}`
+        new_result.classList.add("result");
+        document.getElementById("result").appendChild(new_result);
       });//endInputEventListener
+
     });//endDomContentLoaded
   </script>
   <noscript></noscript>
