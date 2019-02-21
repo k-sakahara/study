@@ -24,13 +24,16 @@ self.addEventListener("message",function(e){
   let amo = Number(e.data);
   let count = 0;
   let resultArr = [];
-  for(var i = 1; count < amo; i++){
+  resultArr.push(2);
+  count++; //2以外は奇数だけチェックしたいから2が邪魔
+
+
+  for(var i = 3; count < amo; i=i+2){
     if(primeNumber(i)){
       resultArr.push(i);
       count++;
     }
-
   }
-  console.log(resultArr);
+  // console.log(resultArr);
   postMessage(resultArr);
 });
