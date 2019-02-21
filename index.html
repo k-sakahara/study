@@ -81,7 +81,7 @@
     font-size: 0;
     position: fixed;
     padding:0.2em 1em;
-    bottom: 60px;
+    bottom: 90px;
     right: 16px;
     opacity: 0;
     color:red;
@@ -365,6 +365,8 @@
       window.scrollTo( 0, Math.floor( scrolled / 2 ) );
       if ( scrolled > 0 ) {
         window.setTimeout( scrollToTop, 30 );
+      }else{
+        console.user(`ページトップへ戻りました`);
       }
     };
 
@@ -387,6 +389,7 @@
       });
 
       topButton.addEventListener("click",function(){
+        console.user(`ページトップへ戻ります`);
         scrollToTop();
       });
 
