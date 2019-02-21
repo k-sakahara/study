@@ -38,6 +38,7 @@
       overflow: auto;
       color:white;
       padding:10px 20px;
+      height:50px;
      }
 
     .result{
@@ -126,7 +127,7 @@
     transition: opacity 1s;
     }
     .story{
-      margin:1em 0;
+      margin:1em 0 2em 0;
       color:#101010;
       padding:0 1em 3em 1em;
     }
@@ -201,15 +202,24 @@
       font-size: 8px;
     }
     .login{
-      float: right;
-      background-color: rgba(255, 255, 255, 0.3);
+      /* background-color: rgba(255, 255, 255, 0.3);
       text-decoration: none;
       transition: all 1s;
-      line-height: 30px;
-      display: block;
+      line-height: 30px; */
+      font-size:18px;
+      text-decoration: none;
+      color:#f0f0f0;
+      padding:0 3em;
+      border-left: solid #004B4D 1px;
+      line-height:70px;
+      height:70px;
+      position:absolute;
+      top:0;
+      right:0;
+      transition: background-color .2s;
     }
     .login:hover {
-      background-color: red;
+      background-color: #004B4D;
     }
 
   </style>
@@ -221,7 +231,6 @@
   <header>
     <div class="header">
       <div  class="header-logo">ヘッダ</div>
-      <a href="#" class="login">ログイン</a>
       <div class="header-list">
         <ul class ="menu">
           <li>メニュー１</li>
@@ -229,6 +238,7 @@
           <li>メニュー３</li>
         </ul>
       </div>
+      <a href="#" class="login">ログイン</a>
     </div>
   </header>
 
@@ -463,19 +473,25 @@
         console.user("名前と苗字を入力して名前を表示してみましょう！入力したら「追加」をクリックするかエンターキーを押してください。");
       });
 
+      document.getElementsByClassName("login")[0].addEventListener("click",function(){
+        console.user("ログインボタンがクリックされました。ログインはできません。")
+      });
+
       document.getElementById("user-console").addEventListener("click",function(e){
         e.target.classList.toggle("large");
         console.log("a");
         if(e.target.classList.contains("large")){
-          //consoleがでかいとき
-          console.userlogtmp = document.getElementById("user-console").textContent;
-          document.getElementById("user-console").textContent = "";
-          var i = console.userlog.length - 40;
-          for (i; i <= console.userlog.length; i++) {
-            if ( typeof(console.userlog[i]) !== "undefined" ){
-              document.getElementById("user-console").innerText = document.getElementById("user-console").innerText + console.userlog[i] + "\n"
+          setTimeout(function(){
+            console.userlogtmp = document.getElementById("user-console").textContent;
+            document.getElementById("user-console").textContent = "";
+            var i = console.userlog.length - 40;
+            for (i; i <= console.userlog.length; i++) {
+              if ( typeof(console.userlog[i]) !== "undefined" ){
+                document.getElementById("user-console").innerText = document.getElementById("user-console").innerText + console.userlog[i] + "\n"
+              }
             }
-          }
+          },200); //展開中にtextContentを書き換えると重い事があるので待つ
+          //consoleがでかいとき
         }else{
           //consoleが通常サイズの時
           document.getElementById("user-console").textContent = console.userlogtmp;
