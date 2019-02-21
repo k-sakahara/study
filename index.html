@@ -107,19 +107,27 @@
 
   <!-- Script -->
   <script type="text/javascript">
+    let count = 0;
+    const output = function(){
+      count++;
+      let new_result = document.createElement("p");
+      new_result.textContent = `${count}. Hello ${document.getElementById("first-name").value} ${document.getElementById("last-name").value }!`
+      new_result.classList.add("result");
+      document.getElementById("result").appendChild(new_result);
+      document.getElementById("first-name").value = "";
+      document.getElementById("last-name").value = "";
+    }
     document.addEventListener("DOMContentLoaded",function(){
 
-      let count = 0;
-
       document.getElementById("add-btn").addEventListener("click",function(){
-        count++;
-        let new_result = document.createElement("p");
-        new_result.textContent = `${count}. Hello ${document.getElementById("first-name").value} ${document.getElementById("last-name").value }!`
-        new_result.classList.add("result");
-        document.getElementById("result").appendChild(new_result);
-        document.getElementById("first-name").value = "";
-        document.getElementById("last-name").value = "";
+        output();
       });//endInputEventListener
+
+      document.getElementById("input-text").addEventListener("keydown",function(ev){
+        if(ev.keyCode===13){
+          output();
+        }
+      });
 
     });//endDomContentLoaded
   </script>
