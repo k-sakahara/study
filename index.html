@@ -279,6 +279,17 @@
       border:#0f0f0f solid 1px;
       padding:0 0.5em 0 0.5em;
     }
+    #btn_stop{
+      display: inline-block;
+      padding: 0.5em 1em;
+      text-decoration: none;
+      background: white;
+      border-left: solid 6px #ff7c5c;/*左線*/
+      color: green;/*文字色*/
+      font-weight: bold;
+      box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.29);
+      height:40px
+    }
 
 
   </style>
@@ -310,6 +321,8 @@
 
   <div class="content">
     <img src="ダウンロード.jpg" alt="犬の写真" id="dog" name="dog_name">
+    <input id="btn_stop" type="button" value="画像切り替え停止">
+    <div id="result"></div>
 
     <div class="ctl">
       <div id="input-text" class="box">
@@ -465,6 +478,7 @@
 
 
 
+
   <footer>
     <span>&copy 2018</span>
   </footer>
@@ -606,30 +620,28 @@
         }
       }); //コンソール展開用クリックリスナここまで
 
-
+        //ここから画像切替
         var pics_src = new Array("ダウンロード.jpg","2.jpg");
         num = -1;
 
         var slideShow_timer = function(){
-
           if(num == 2){
             num =0;
           }else{
             num++;
           }
-
-
           document.getElementById('dog').src=pics_src[num];
-          setTimeout(slideShow_timer,1000);
-
-
-          console.log(pics_src[num]);
-
+          setInterval(slideShow_timer,1000);
         };
           slideShow_timer();
 
+          document.getElementById('btn_stop').addEventListener('click',function(){
+            window.clearInterval(slideShow_timer);
+          });
+
 
     });//endDomContentLoaded
+
 
 
 
