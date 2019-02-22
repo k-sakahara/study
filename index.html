@@ -313,7 +313,7 @@
 
   <div class="content">
     <img src="ダウンロード.jpg" alt="犬の写真" id="dog" name="dog_name" class="height-static">
-    <input id="btn_stop" type="button" value="タイマー停止">
+    <input id="btn_stop" type="button" value="タイマー停止" class="btn">
 
     <div class="ctl">
       <div id="input-text" class="box">
@@ -614,7 +614,8 @@
       });
 
       document.getElementsByClassName("login")[0].addEventListener("click",function(){
-        console.user("ログインボタンがクリックされました。ログインはできません。")
+        console.user("ログインボタンがクリックされました。ログインはできません。");
+
       });
 
       document.getElementsByTagName("img")[0].addEventListener("click",function(){
@@ -654,6 +655,8 @@
         console.user("SlideShow 続行フラグを切り替えました");
         slideshow.toggle(); //slideShow 続行flag切り替え
       });
+
+
 
 
     });//endDomContentLoaded
