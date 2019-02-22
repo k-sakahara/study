@@ -625,7 +625,7 @@
           setTimeout(function(){
             console.userlogtmp = document.getElementById("user-console").textContent;
             document.getElementById("user-console").textContent = "";
-            var i = console.userlog.length - 40;
+            var i = console.userlog.length - 50;
             for (i; i <= console.userlog.length; i++) {
               if ( typeof(console.userlog[i]) !== "undefined" ){
                 document.getElementById("user-console").innerText = document.getElementById("user-console").innerText + console.userlog[i] + "\n"
