@@ -553,18 +553,24 @@
         console.user("素数を計算中です。素数は別スレッドで計算されます。結果が出力されるまでお待ち下さい。");
 
         worker.addEventListener("message",function(e){
-          let resultamo = e.data.length;
-          console.user(`素数計算が完了しました。出力を開始します。${resultamo}個`)
+          let resultamo = e.data.result.length;
+          console.user(`素数計算が完了しました。出力を開始します。${resultamo}個`);
+          const startTime = performance.now();
           let result_p = document.createElement("p");
           result_p.classList.add("result");
-          for (var i = 0; i < e.data.length; i++) {
+          for (var i = 0; i < resultamo; i++) {
             let new_result = document.createElement("span");
             new_result.classList.add("aprime");
-            new_result.textContent = e.data[i]
+            new_result.textContent = e.data.result[i]
             result_p.appendChild(new_result);
           }
           result.appendChild(result_p);
-          console.user(`素数出力 完了しました。${resultamo}個`)
+          const endTime = performance.now();
+          const calcTime = Math.round(e.data.msec*100)/100;
+          const drawTime = Math.round((endTime - startTime)*100)/100;
+          const sumTime = Math.round((calcTime+drawTime)*100)/100;
+
+          console.user(`素数出力 完了しました。${resultamo}個 / 計算時間 ${calcTime}[msec] / 描画時間 ${drawTime}[msec] / 総処理時間 ${sumTime}[msec]`)
         });
 
       });
