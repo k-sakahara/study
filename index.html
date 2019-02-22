@@ -638,11 +638,12 @@
           document.getElementById("user-console").textContent = console.userlogtmp;
         }
       }); //コンソール展開用クリックリスナここまで
-      
-      let slideshow = slideShow_timer(); //slideshow生成
+
+      let slideshow = new slideShow_timer(); //slideshow生成
       slideshow.start(); //slideShow呼び出し 開始
       btn_stop.addEventListener('click',function(){
-        slideshow.toggle(); //slideShow 続行status切り替え
+        console.user("SlideShow 続行フラグを切り替えました");
+        slideshow.toggle(); //slideShow 続行flag切り替え
       });
 
 
