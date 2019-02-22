@@ -503,8 +503,8 @@
       }
     };
 
-    let slide_stop = false;//GLOBAL
     const slideShow_timer = function(){
+      let slide_stop = false;
       let num = -1;
       const pics_src = new Array("ダウンロード.jpg","2.jpg");
       const inf = function(){
@@ -513,7 +513,14 @@
         if(!slide_stop){setTimeout(inf,1000);}
         console.log(pics_src[num]);
       }
-      inf();
+      return{
+        toggle: function(){
+          slide_stop ? slide_stop = false : slide_stop = true;
+        },
+        start: function(){
+          inf();
+        }
+      };
     };
 
 
@@ -631,10 +638,14 @@
           document.getElementById("user-console").textContent = console.userlogtmp;
         }
       }); //コンソール展開用クリックリスナここまで
-      slideShow_timer(); //slideShow呼び出し
+      
+      let slideshow = slideShow_timer(); //slideshow生成
+      slideshow.start(); //slideShow呼び出し 開始
       btn_stop.addEventListener('click',function(){
-        slide_stop = true;
+        slideshow.toggle(); //slideShow 続行status切り替え
       });
+
+
     });//endDomContentLoaded
 
 
