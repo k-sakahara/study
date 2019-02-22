@@ -313,6 +313,7 @@
 
   <div class="content">
     <img src="ダウンロード.jpg" alt="犬の写真" id="dog" name="dog_name" class="height-static">
+    <input id="btn_stop" type="button" value="タイマー停止">
 
     <div class="ctl">
       <div id="input-text" class="box">
@@ -468,6 +469,7 @@
 
 
 
+
   <footer>
     <span>&copy 2018</span>
   </footer>
@@ -501,17 +503,20 @@
       }
     };
 
+    let slide_stop = false;//GLOBAL
     const slideShow_timer = function(){
       let num = -1;
       const pics_src = new Array("ダウンロード.jpg","2.jpg");
       const inf = function(){
         num === pics_src.length-1 ? num = 0 : num++;
         document.getElementById('dog').src=pics_src[num];
-        setTimeout(inf,1000);
+        if(!slide_stop){setTimeout(inf,1000);}
         console.log(pics_src[num]);
       }
       inf();
     };
+
+
 
     document.addEventListener("DOMContentLoaded",function(){
       console.user("DOMの読み込みが完了しました");
@@ -627,7 +632,11 @@
         }
       }); //コンソール展開用クリックリスナここまで
       slideShow_timer(); //slideShow呼び出し
+      btn_stop.addEventListener('click',function(){
+        slide_stop = true;
+      });
     });//endDomContentLoaded
+
 
 
 
