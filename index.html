@@ -312,7 +312,7 @@
   <div id="page-top" class="blogicon-chevron-up">上へ</div>
 
   <div class="content">
-    <img src="ダウンロード.jpg" alt="犬の写真" id="dog" name="dog_name" class="height-static">
+    <img src="ダウンロード.jpg" alt="犬の写真" id="dog" name="dog_name" class="height-static" hidden>
     <input id="btn_stop" type="button" value="タイマー停止">
 
     <div class="ctl">
@@ -548,7 +548,7 @@
         };
 
         let amo = primeamo.value;
-        var worker = newWorkerViaBlob("worker.js");
+        var worker = new Worker("worker.js");
         worker.postMessage(amo);
         console.user("素数を計算中です。素数は別スレッドで計算されます。結果が出力されるまでお待ち下さい。");
 
@@ -648,12 +648,12 @@
         }
       }); //コンソール展開用クリックリスナここまで
 
-      let slideshow = new slideShow_timer(); //slideshow生成
-      slideshow.start(); //slideShow呼び出し 開始
-      btn_stop.addEventListener('click',function(){
-        console.user("SlideShow 続行フラグを切り替えました");
-        slideshow.toggle(); //slideShow 続行flag切り替え
-      });
+      // let slideshow = new slideShow_timer(); //slideshow生成
+      // slideshow.start(); //slideShow呼び出し 開始
+      // btn_stop.addEventListener('click',function(){
+      //   console.user("SlideShow 続行フラグを切り替えました");
+      //   slideshow.toggle(); //slideShow 続行flag切り替え
+      // });
 
 
     });//endDomContentLoaded

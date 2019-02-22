@@ -18,8 +18,6 @@ self.addEventListener("message",function(e){ //e.data.amo = amo // e.data.start 
   let count = 0;
   let resultArr = [];
   const start = e.data.start % 2 === 0 ? e.data.start+1 : e.data.start;
-
-
   for(var i = start; count < amo; i=i+2){
     if(isPrime(i)){
       resultArr.push(i);
