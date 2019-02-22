@@ -482,7 +482,7 @@
   </div>
     <div class="side">
       <div class="side_menu">サイドメニュー</div>
-          <ul class="authers">
+          <ul class="authers" id="sideau">
             <li ><input type="button" value="太宰治" class="button_style"/></li><br>
             <li ><input type="button" value="村上春樹" class="button_style"/></li><br>
             <li ><input type="button" value="朝井リョウ" class="button_style"/></li><br>
@@ -610,6 +610,13 @@
       document.getElementsByTagName("img")[0].addEventListener("click",function(){
         console.user("わんわん");
       });
+
+      let authors = sideau.getElementsByTagName("input");
+      for (var i = 0; i < authors.length; i++) {
+        authors[i].addEventListener("click",function(ev){
+          console.user(`こんにちは！私の名前は、${ev.target.value}です。`)
+        });
+      }
 
       document.getElementById("user-console").addEventListener("click",function(e){
         e.target.classList.toggle("large");
