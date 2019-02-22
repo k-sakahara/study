@@ -530,6 +530,18 @@
       }
     };
 
+    const slideShow_timer = function(){
+      let num = -1;
+      const pics_src = new Array("ダウンロード.jpg","2.jpg");
+      const inf = function(){
+        num === pics_src.length-1 ? num = 0 : num++;
+        document.getElementById('dog').src=pics_src[num];
+        setTimeout(inf,1000);
+        console.log(pics_src[num]);
+      }
+      inf();
+    };
+
     document.addEventListener("DOMContentLoaded",function(){
       console.user("DOMの読み込みが完了しました");
       document.getElementById("add-btn").addEventListener("click",function(){
@@ -637,30 +649,7 @@
           document.getElementById("user-console").textContent = console.userlogtmp;
         }
       }); //コンソール展開用クリックリスナここまで
-
-
-        var pics_src = new Array("ダウンロード.jpg","2.jpg");
-        num = -1;
-
-        var slideShow_timer = function(){
-
-          if(num == 2){
-            num =0;
-          }else{
-            num++;
-          }
-
-
-          document.getElementById('dog').src=pics_src[num];
-          setTimeout(slideShow_timer,1000);
-
-
-          console.log(pics_src[num]);
-
-        };
-          slideShow_timer();
-
-
+      slideShow_timer(); //slideShow呼び出し
     });//endDomContentLoaded
 
 
