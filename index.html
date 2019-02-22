@@ -511,7 +511,6 @@
         num === pics_src.length-1 ? num = 0 : num++;
         document.getElementById('dog').src=pics_src[num];
         if(!slide_stop){setTimeout(inf,1000);}
-        console.log(pics_src[num]);
       }
       return{
         toggle: function(){
@@ -540,7 +539,7 @@
       });
 
       primebtn.addEventListener("click",function(){
-        var newWorkerViaBlob = function(relativePath) {
+        const newWorkerViaBlob = function(relativePath) {
           var baseURL = window.location.href.replace(/\\/g, '/').replace(/\/[^\/]*$/, '/');
           var array = ['importScripts("' + baseURL + relativePath + '");'];
           var blob = new Blob(array, {type: 'text/javascript'});
