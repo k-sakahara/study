@@ -576,7 +576,7 @@
       });
 
       primeamo.addEventListener("keydown",function(e){
-        if(e.keyCode === 13){
+        if(e.keyCode === 15){
           primebtn.click();
         }
       });
@@ -589,6 +589,7 @@
         console.user(`ページトップへ戻ります`);
         scrollToTop();
       });
+
 
       document.getElementsByClassName("grad-btn")[0].addEventListener("click",function(){
         console.user("長文を展開しました");
@@ -621,6 +622,7 @@
         e.target.classList.toggle("large");
         console.log("a");
         if(e.target.classList.contains("large")){
+<<<<<<< HEAD
           console.userlogtmp = document.getElementById("user-console").textContent;
           document.getElementById("user-console").textContent = "";
           var i = console.userlog.length - 40;
@@ -630,6 +632,18 @@
             }//endIf
           }//endFor
 
+=======
+          setTimeout(function(){
+            console.userlogtmp = document.getElementById("user-console").textContent;
+            document.getElementById("user-console").textContent = "";
+            var i = console.userlog.length - 50;
+            for (i; i <= console.userlog.length; i++) {
+              if ( typeof(console.userlog[i]) !== "undefined" ){
+                document.getElementById("user-console").innerText = document.getElementById("user-console").innerText + console.userlog[i] + "\n"
+              }
+            }
+          },200); //展開中にtextContentを書き換えると重い事があるので待つ
+>>>>>>> dab14af0d68f447704f2f0b48b39239614f33909
           //consoleがでかいとき
         }else{
           //consoleが通常サイズの時
@@ -651,7 +665,7 @@
 
 
           document.getElementById('dog').src=pics_src[num];
-          setInterval(slideShow_timer,3000);
+          setTimeout(slideShow_timer,1000);
 
 
           console.log(pics_src[num]);
