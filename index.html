@@ -590,6 +590,7 @@
         scrollToTop();
       });
 
+
       document.getElementsByClassName("grad-btn")[0].addEventListener("click",function(){
         console.user("長文を展開しました");
       });
@@ -645,7 +646,7 @@
 
 
           document.getElementById('dog').src=pics_src[num];
-          setInterval(slideShow_timer,3000);
+          setTimeout(slideShow_timer,1000);
 
 
           console.log(pics_src[num]);
