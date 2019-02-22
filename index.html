@@ -503,23 +503,17 @@
       }
     };
 
+    let slide_stop = false;//GLOBAL
     const slideShow_timer = function(){
       let num = -1;
       const pics_src = new Array("ダウンロード.jpg","2.jpg");
       const inf = function(){
         num === pics_src.length-1 ? num = 0 : num++;
         document.getElementById('dog').src=pics_src[num];
-        setInterval(inf,1000);
+        if(!slide_stop){setTimeout(inf,1000);}
         console.log(pics_src[num]);
-
-        btn_stop.addEventListener('click',function(){
-        window.clearInterval(inf());
-        });
-
       }
       inf();
-
-
     };
 
 
@@ -638,6 +632,9 @@
         }
       }); //コンソール展開用クリックリスナここまで
       slideShow_timer(); //slideShow呼び出し
+      btn_stop.addEventListener('click',function(){
+        slide_stop = true;
+      });
     });//endDomContentLoaded
 
 
