@@ -554,18 +554,28 @@
         console.user("素数を計算中です。素数は別スレッドで計算されます。結果が出力されるまでお待ち下さい。");
 
         worker.addEventListener("message",function(e){
+          const maxDom = 50000; //何件以上でconsole.logへの出力を推奨するか
           let resultamo = e.data.result.length;
           console.user(`素数計算が完了しました。出力を開始します。${resultamo}個`);
-          const startTime = performance.now();
-          let result_p = document.createElement("p");
-          result_p.classList.add("result");
-          for (var i = 0; i < resultamo; i++) {
-            let new_result = document.createElement("span");
-            new_result.classList.add("aprime");
-            new_result.textContent = e.data.result[i]
-            result_p.appendChild(new_result);
+          let toConsole = false;
+          if(maxDom <= resultamo){
+            toConsole = window.confirm(`出力件数が${resultamo}件です。\nconsole.logへ出力しますか？\nOK=>console.log / Cancel=>DOM`);
           }
-          result.appendChild(result_p);
+          const startTime = performance.now(); //パフォーマンス計測開始
+          if(!toConsole){
+            let result_p = document.createElement("p");
+            result_p.classList.add("result");
+            for (var i = 0; i < resultamo; i++) {
+              let new_result = document.createElement("span");
+              new_result.classList.add("aprime");
+              new_result.textContent = e.data.result[i]
+              result_p.appendChild(new_result);
+            }
+            result.appendChild(result_p);
+          }else{
+            console.log(e.data.result);
+          }
+
           const endTime = performance.now();
           const calcTime = Math.round(e.data.msec*100)/100;
           const drawTime = Math.round((endTime - startTime)*100)/100;
