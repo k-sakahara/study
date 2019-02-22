@@ -590,6 +590,17 @@
         e.target.classList.toggle("large");
         console.log("a");
         if(e.target.classList.contains("large")){
+<<<<<<< HEAD
+          console.userlogtmp = document.getElementById("user-console").textContent;
+          document.getElementById("user-console").textContent = "";
+          var i = console.userlog.length - 40;
+          for (i; i <= console.userlog.length; i++) {
+            if ( typeof(console.userlog[i]) !== "undefined" ){
+              document.getElementById("user-console").innerText = document.getElementById("user-console").innerText + console.userlog[i] + "\n"
+            }//endIf
+          }//endFor
+
+=======
           setTimeout(function(){
             console.userlogtmp = document.getElementById("user-console").textContent;
             document.getElementById("user-console").textContent = "";
@@ -600,6 +611,7 @@
               }
             }
           },200); //展開中にtextContentを書き換えると重い事があるので待つ
+>>>>>>> dab14af0d68f447704f2f0b48b39239614f33909
           //consoleがでかいとき
         }else{
           //consoleが通常サイズの時
