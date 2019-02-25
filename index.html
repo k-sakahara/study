@@ -309,6 +309,12 @@
     <div class="main">
 
   <!-- トップに戻るボタン -->
+
+  <form class="testForm" action="index.html" method="post">
+    <input type="text" name="yourName" />
+    <input type="submit" />
+  </form>
+
   <div id="page-top" class="blogicon-chevron-up">上へ</div>
 
   <div class="content">
@@ -662,6 +668,41 @@
 
 
     });//endDomContentLoaded
+
+    class NextField{
+      constructor(elms,nextIdAttribute = "data-next-id",nextNameAttribute = "data-next-name") {
+        this.fields = elms;
+        this.nextIdAttribute = nextIdAttribute;
+        this.nextNameAttribute = nextNameAttribute;
+      }
+
+      const init = function(){
+        for (var i = 0; i < this.fields.length; i++) {
+          this.fields[i].addEventListener("keydown",function(ev){
+            if(ev.keyCode === 13){
+              if(this.fields.getAttribute(this.nextIdAttribute) !== null){
+                //data-next-id was set
+                this.fields.getElementById(this.fields.getAttribute(this.nextIdAttribute)).focus();
+              }else if(this.fields.getAttribute(this.nextNameAttribute) !== null){
+                //data-next-name was set
+                const nextelm = this.fields.getElementsByName(this.fields.getAttribute(this.nextNameAttribute));
+                if(typeof(nextelm[1]) === "undefined"){
+                  nextelm[0].focus();
+                }else{
+                  //when name is duplicated
+                  //ERROR
+                }
+                this.fields.getElementById(this.fields.getAttribute("data-next-id")).focus();
+              }else{
+                //nothing
+              }
+            } //endEnterEvent keycode === 13
+          }); //endEventListener
+        } //endFor
+      } //endInitFunc
+    } //endClass
+
+    let aaa = new NextField(document.getElementsByClassName("testForm"));
 
 
 
